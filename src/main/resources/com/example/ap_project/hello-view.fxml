@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.ap_project.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<HBox id="1" alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane alignment="BOTTOM_LEFT" prefHeight="600.0" prefWidth="804.0">
+         <children>
+            <ImageView fitHeight="607.0" fitWidth="814.0">
+               <image>
+                  <Image url="@1e44a0809d18bc67d0348605864f9dbc.jpg" />
+               </image>
+            </ImageView>
+            <ImageView translateY="-254.0">
+               <image>
+                  <Image url="@pngwing.com.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" width="208.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" translateX="700.0" width="114.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" translateX="400.0" width="136.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" translateX="202.0" translateY="-263.0" width="6.0" />
+         </children>
+      </StackPane>
+   </children>
+</HBox>
