@@ -9,27 +9,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefHeight="422.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="403.0" fitWidth="601.0">
+            <ImageView fitHeight="600.0" fitWidth="813.0">
                <image>
                   <Image url="@image1_0.jpg" />
                </image>
             </ImageView>
-            <Text fill="#05ed3f" strokeType="OUTSIDE" strokeWidth="0.0" text="STICK HERO" translateX="-100.0" translateY="-100.0">
+            <Text blendMode="COLOR_DODGE" fill="#05ed3f" strokeType="OUTSIDE" strokeWidth="0.0" text="STICK HERO" translateX="-100.0" translateY="-100.0">
                <font>
-                  <Font name="System Bold" size="33.0" />
+                  <Font name="SansSerif Bold" size="33.0" />
                </font>
             </Text>
             <Button mnemonicParsing="false" text="PLAY" />
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="High Score:" translateX="-180.0" translateY="-165.0" />
-            <Label text="Label" translateX="-130.0" translateY="-165.0" />
+            <Text blendMode="RED" fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="High Score:" translateX="-180.0" translateY="-165.0" />
+            <Label text="Label" translateX="-125.0" translateY="-165.0" />
             <Label text="Label" translateX="-130.0" translateY="-180.0" />
             <Button mnemonicParsing="false" text="LOAD" translateY="40.0" />
-            <Text fill="#f80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Cherries:" translateX="-190.0" translateY="-180.0" />
+            <Text blendMode="COLOR_DODGE" fill="#f80000" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Cherries:" translateX="-190.0" translateY="-180.0" />
+            <Text blendMode="RED" fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Score:" translateX="-180.0" translateY="-150.0" />
+            <Label text="Label" translateX="-125.0" translateY="-150.0" />
          </children>
       </StackPane>
    </children>

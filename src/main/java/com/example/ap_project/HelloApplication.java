@@ -10,16 +10,33 @@ import java.util.List;
 
 public class HelloApplication extends Application {
 
-
-
+public void Scene_switching()
+{}
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play.fxml"));
-        Scene Main_menu = new Scene(fxmlLoader.load(), 800, 600);
-//        Scene live=new Scene(fxmlLoader.load(),320,240);
+        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("Main_menu.fxml"));
+        FXMLLoader fxmlLoader3 = new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
+
+        Scene Main_menu = new Scene(fxmlLoader2.load(), 800, 600);
+        Scene Pause = new Scene(fxmlLoader3.load(), 800, 600);
+
+        Scene live=new Scene(fxmlLoader.load(),800,600);
         stage.setTitle("Hello!");
-        stage.setScene(Main_menu);
+//        stage.setScene(Main_menu);
+//
+//        stage.show();
+//        stage.close();
+        stage.setTitle("Hello!");
+        stage.setScene(live);
+
         stage.show();
+//        stage.close();
+//        stage.setTitle("Hello!");
+//        stage.setScene(Pause);
+//
+//        stage.show();
+//        stage.close();
     }
 
 
