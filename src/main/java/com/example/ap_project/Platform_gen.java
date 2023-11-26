@@ -32,6 +32,15 @@ private static Cherries cherry_details;
     public Platform_gen() {
     }
 
+@FXML
+public void stick_grow(ActionEvent event){
+        System.out.println("Key pressed");
+    stick.setTranslateX(125);
+    stick.setHeight(stick.getHeight()+1);
+
+
+}
+
 
 
 @FXML

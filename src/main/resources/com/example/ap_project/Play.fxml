@@ -46,7 +46,7 @@
             <Label text="Label" textFill="WHITE" translateX="690.0" translateY="-550.0" />
             <Label text="Label" textFill="WHITE" translateX="730.0" translateY="-570.0" />
             <Label text="Label" textFill="WHITE" translateX="80.0" translateY="-570.0" />
-            <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" translateX="400.0" translateY="-263.0" width="6.0" />
+            <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="100.0" onKeyPressed="#stick_grow" stroke="BLACK" strokeType="INSIDE" translateX="400.0" translateY="-263.0" width="6.0" />
          </children>
       </StackPane>
    </children>
