@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<HBox id="1" alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="1" alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project.Platform_gen">
    <children>
       <StackPane alignment="BOTTOM_LEFT" prefHeight="600.0" prefWidth="804.0">
          <children>
@@ -18,21 +19,26 @@
                   <Image url="@1e44a0809d18bc67d0348605864f9dbc.jpg" />
                </image>
             </ImageView>
-            <ImageView translateY="-254.0">
+            <ImageView fitHeight="54.0" fitWidth="51.0" translateY="-254.0">
                <image>
                   <Image url="@pngwing.com.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" width="208.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" translateX="400.0" width="136.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" translateX="202.0" translateY="-263.0" width="6.0" />
-            <ImageView fitHeight="47.0" fitWidth="46.0" translateX="300.0" translateY="-209.0">
+            <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" height="263.0" onKeyPressed="#initialize" onMouseClicked="#initialize" stroke="BLACK" strokeType="INSIDE" width="125.0" />
+            <Rectangle fx:id="p2" arcHeight="5.0" arcWidth="5.0" height="263.0" stroke="BLACK" strokeType="INSIDE" translateX="400.0" width="136.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin></Rectangle>
+            <ImageView fx:id="cherry" fitHeight="17.0" fitWidth="11.0" translateX="400.0" translateY="-239.0">
                <image>
-                  <Image url="@ichigo_hollow_mask_by_civiltoonz_def6m1m-fullview.png" />
+                  <Image url="@cherry.png" />
                </image>
                <effect>
                   <Glow level="0.68" />
                </effect>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
             </ImageView>
             <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT SCORE:" translateX="600.0" translateY="-570.0" />
             <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="HIGH SCORE:" translateX="600.0" translateY="-550.0" />
@@ -40,6 +46,7 @@
             <Label text="Label" textFill="WHITE" translateX="690.0" translateY="-550.0" />
             <Label text="Label" textFill="WHITE" translateX="730.0" translateY="-570.0" />
             <Label text="Label" textFill="WHITE" translateX="80.0" translateY="-570.0" />
+            <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" translateX="400.0" translateY="-263.0" width="6.0" />
          </children>
       </StackPane>
    </children>
