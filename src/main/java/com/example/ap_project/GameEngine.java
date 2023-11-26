@@ -9,7 +9,6 @@ public class GameEngine extends Menu {
         super(0, 0, new Save(new Level(), 0, 0));
         this.stickHero = new StickHeroCharacter(0, 0, super.save.getLevel());
         this.current_level = super.save.level;
-        super.DisplayMenu();
 
         // Game engine initialization
     }

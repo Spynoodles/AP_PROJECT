@@ -10,15 +10,22 @@ public class Level{
 
 
     public Level() {
-        Platform_gen temp=new Platform_gen();
-        this.p1=new Platform((int) temp.p1.getX(), (int) temp.p1.getWidth());
-        this.p2=new Platform((int) temp.p2.getX(), (int) temp.p2.getWidth());
-//        this.cherry=temp.getCherry_details();
+        this.p1=new Platform((int) HelloApplication.controller.p1.getTranslateX(), (int) HelloApplication.controller.p1.getWidth());
+        this.p2=new Platform((int) HelloApplication.controller.p2.getTranslateX(), (int) HelloApplication.controller.p2.getWidth());
+        this.cherry=HelloApplication.controller.getCherry_details();
         }
 
 
+    @Override
+    public String toString() {
+        return "Level{" +
+                "p1=" + p1.getWidth() +
+                ", p2=" + p2.getWidth() +
+                ", cherry=" + cherry.getX_coordinate() +
+                '}';
+    }
 
-public Platform getP1() {
+    public Platform getP1() {
         return p1;
         }
 

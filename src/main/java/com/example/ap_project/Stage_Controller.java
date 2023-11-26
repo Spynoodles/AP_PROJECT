@@ -21,6 +21,17 @@ public class Stage_Controller  {
 
     @FXML
         public void load_game(MouseEvent event){
+        Save save=HelloApplication.game.save;
+        int score= save.score;
+        int cherries= save.cherries;
+        Level level=save.level;
+        Platform temp2=level.p2;
+        Cherries c_detail=level.cherry;
+
+HelloApplication.controller.generate_level(level,score,cherries);
+HelloApplication.primary.setScene(HelloApplication.Play);
+
+
 
 
     }

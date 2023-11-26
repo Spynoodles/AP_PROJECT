@@ -1,7 +1,7 @@
 package com.example.ap_project;
 
 public class Stick {
-    private int stickLength;
+
 
     public void extendStick() {
         // Logic for extending the stick
@@ -12,11 +12,11 @@ public class Stick {
     }
 
     public int getStickLength() {
-        return stickLength;
+        return 0;
     }
 
     public void setStickLength(int stickLength) {
-        this.stickLength = stickLength;
+
     }
 
     public boolean check_connection(Platform p1, Platform p2) {

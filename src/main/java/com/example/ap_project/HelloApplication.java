@@ -2,6 +2,7 @@ package com.example.ap_project;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,9 @@ public class HelloApplication extends Application {
     public static FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play.fxml"));
     public static FXMLLoader main_menuLoader=new FXMLLoader(HelloApplication.class.getResource("Main_menu.fxml"));
     public static FXMLLoader pause_loader=new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
-
+    public static GameEngine game;
     public static   Scene Play;
+    public  static         Platform_gen controller;
 
     static {
         try {
@@ -77,11 +79,17 @@ public class HelloApplication extends Application {
 
 
 
-        Platform_gen controller=fxmlLoader.getController();
          primary.setTitle("Hello!");
+
+         primary.setScene(Play);
          primary.setScene(Main_menu);
          primary.show();
-//         controller.initialize();
+         controller=fxmlLoader.getController();
+         controller.initialize();
+        game=new GameEngine();
+
+
+
 
 
 
@@ -89,6 +97,8 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
+
+
         launch();
 
     }
