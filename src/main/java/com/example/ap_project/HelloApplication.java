@@ -85,8 +85,10 @@ public class HelloApplication extends Application {
          primary.setScene(Main_menu);
          primary.show();
          controller=fxmlLoader.getController();
-         controller.initialize();
+//         controller.initialize();
+         controller.init_keyaction();
         game=new GameEngine();
+
 
 
 

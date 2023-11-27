@@ -10,6 +10,7 @@ public class Level{
 
 
     public Level() {
+        HelloApplication.controller.initialize();
         this.p1=new Platform((int) HelloApplication.controller.p1.getTranslateX(), (int) HelloApplication.controller.p1.getWidth());
         this.p2=new Platform((int) HelloApplication.controller.p2.getTranslateX(), (int) HelloApplication.controller.p2.getWidth());
         this.cherry=HelloApplication.controller.getCherry_details();

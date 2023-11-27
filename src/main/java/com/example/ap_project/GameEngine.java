@@ -4,6 +4,21 @@ public class GameEngine extends Menu {
     private StickHeroCharacter stickHero;
     private Level current_level;
 
+    public StickHeroCharacter getStickHero() {
+        return stickHero;
+    }
+
+    public void setStickHero(StickHeroCharacter stickHero) {
+        this.stickHero = stickHero;
+    }
+
+    public Level getCurrent_level() {
+        return current_level;
+    }
+
+    public void setCurrent_level(Level current_level) {
+        this.current_level = current_level;
+    }
 
     public GameEngine() {
         super(0, 0, new Save(new Level(), 0, 0));
@@ -14,12 +29,12 @@ public class GameEngine extends Menu {
     }
 
     public void Play() {
-        stickHero.create_stick();
-        stickHero.move();
-        current_level = new Level();
+
 
 
     }
+
+
 
 
     public void Next_level() {
@@ -27,9 +42,8 @@ public class GameEngine extends Menu {
     }
 
     public void Game_over() {
-        if (stickHero.getStick().check_connection(current_level.p1, current_level.p2) == false) {
 
-        }
+
     }
 
     public void updateScore() {
