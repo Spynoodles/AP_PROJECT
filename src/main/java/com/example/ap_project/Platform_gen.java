@@ -95,10 +95,17 @@ public void rotate(){
             rotate_called=false;
             HelloApplication.game.updateScore();
             HelloApplication.game.Next_level();
+            score_update();
+
         }
 }
 
-
+public void score_update(){
+        HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
+//    HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
+    this.score.setText(String.valueOf((HelloApplication.game.getStickHero().getScore())));
+    this.cherries.setText(String.valueOf(HelloApplication.game.getStickHero().getCherries()));
+}
 
 
 @FXML
@@ -121,8 +128,8 @@ p2.setTranslateX(random.nextInt(300)+p1.getWidth()+20);
 //
 //    cherry=new ImageView(img);
 cherry.setTranslateX(cherry_details.getX_coordinate());
-    this.score.setText(String.valueOf(HelloApplication.game.getStickHero().getScore()));
-    this.cherries.setText(String.valueOf(HelloApplication.game.getStickHero().getCherries()));
+
+
 //cherry.setLayoutY(-209);
 
 }
