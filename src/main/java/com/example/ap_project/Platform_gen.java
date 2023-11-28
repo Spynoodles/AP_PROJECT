@@ -1,18 +1,12 @@
 package com.example.ap_project;
 
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -96,7 +90,7 @@ public void stickStopOnKeyRelease(KeyEvent event){
 }
 
 public void rotate(){
-        if(rotate_called==false) {
+        if(!rotate_called) {
             double width = stick.getWidth();
             stick.setWidth(stick.getHeight());
             stick.setHeight(width);
@@ -182,14 +176,11 @@ p2.setWidth(random.nextInt(300)+10);
 p2.setTranslateX(random.nextInt(300)+p1.getWidth()+20);
 //    p1.setX(100);
 
-    this.cherry_details=new Cherries(125, (int) (p2.getTranslateX())-9);
-//    Image img = new Image("com/example/ap_project/cherry.jpg");
-//
-//    cherry=new ImageView(img);
+    cherry_details=new Cherries(125, (int) (p2.getTranslateX())-9);
+
 cherry.setTranslateX(cherry_details.getX_coordinate());
 
 
-//cherry.setLayoutY(-209);
 
 }
 
@@ -202,15 +193,13 @@ System.out.println(level);
         p2.setWidth(level.getP2().getWidth());
 p2.setTranslateX(level.getP2().getX_coord());
 cherry.setTranslateX(level.cherry.getX_coordinate());
-this.score.setText(String.valueOf(HelloApplication.game.getStickHero().getScore()));
-this.cherries.setText(String.valueOf(HelloApplication.game.getStickHero().getCherries()));
+this.score.setText(String.valueOf(score));
+this.cherries.setText(String.valueOf(cherries));
     }
 
 
 
-//    public Cherries getCherry_details() {
-//        return cherry_details;
-//    }
+
 
 
 }
