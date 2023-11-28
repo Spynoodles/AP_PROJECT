@@ -19,7 +19,7 @@
                   <Image url="@1e44a0809d18bc67d0348605864f9dbc.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="ichigo" fitHeight="54.0" fitWidth="51.0" translateY="-254.0">
+            <ImageView fx:id="ichigo" fitHeight="26.0" fitWidth="26.0" onMouseClicked="#flip" translateX="99.0" translateY="-254.0">
                <image>
                   <Image url="@pngwing.com.png" />
                </image>
