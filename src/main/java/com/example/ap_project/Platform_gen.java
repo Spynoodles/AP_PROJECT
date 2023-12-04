@@ -1,16 +1,19 @@
 package com.example.ap_project;
 
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.geometry.Point3D;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class Platform_gen{
 
@@ -50,15 +53,44 @@ private static Cherries cherry_details;
     public Platform_gen() {
     }
 
+
+    public void collectCherryLogic(){
+        if(ichigo.getTranslateX()> cherry_details.getX_coordinate()& ichigo.getTranslateX()<(cherry_details.getX_coordinate()+11)&ichigo.getRotate()==180){
+//            this.cherries.setText( (cherries.getText())+1);
+            HelloApplication.game.getStickHero().setCherries(HelloApplication.game.getStickHero().getCherries()+1);
+            cherry.setTranslateX(1000);
+
+
+
+        }
+if(ichigo.getRotate()==180){        fallLogicFlipped();}
+
+
+    }
+  static   TranslateTransition transition_ichigo;
 public void move(){
 
-    TranslateTransition transition = new TranslateTransition(Duration.seconds(2), ichigo);
+transition_ichigo= new TranslateTransition(Duration.seconds(3), ichigo);
 
-        transition.setToX(stick.getWidth()+p1.getWidth()-ichigo.getFitWidth());
+    transition_ichigo.setToX(stick.getHeight()+p1.getWidth()-ichigo.getFitWidth());
 
-        transition.play();
-    transition.setOnFinished((event) -> fallLogic());
+        transition_ichigo.play();
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+       collectCherryLogic();
 
+    }));
+    timeline.setCycleCount(Timeline.INDEFINITE); // Run indefinitely
+    timeline.play();
+
+    transition_ichigo.setOnFinished((event) -> {
+
+        fallLogic();
+if(ichigo.getRotate()!=180& fallLogic()==1){
+    next_level();
+}
+        timeline.stop();
+
+    });
 
 
 }
@@ -85,18 +117,35 @@ public void stickStopOnKeyRelease(KeyEvent event){
         if(event.getCode()==KeyCode.SPACE & spaceReleaseCount){
             spaceReleaseCount=false;
         Stick_stop=false;
-        rotate();}
+
+
+            rotate();}
 
 }
 
 public void rotate(){
+
         if(!rotate_called) {
-            double width = stick.getWidth();
-            stick.setWidth(stick.getHeight());
-            stick.setHeight(width);
-            rotate_called=true;
+
+//            double width = stick.getWidth();
+//            stick.setWidth(stick.getHeight());
+//            stick.setHeight(width);
+
+            Rotate rotate = new Rotate(0, 0, stick.getHeight()); // Angle, pivotX, pivotY
+            stick.getTransforms().add(rotate);
+
+            // Create a Timeline to animate the rotation
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(rotate.angleProperty(), 0)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(rotate.angleProperty(), 90))
+            );
+
+            timeline.setCycleCount(1); // Rotate only once
+            timeline.setOnFinished(e -> move());
+            timeline.play();
+
         }
-    move();
+
 
 
 
@@ -108,29 +157,40 @@ public void fall(){
     transition.setToY(40);
 
     transition.play();
-    transition.setOnFinished(event->HelloApplication.game.Game_over());
+    transition.setOnFinished(event->{HelloApplication.game.Game_over();
+    HelloApplication.primary.close();});
 }
 
 
-public void fallLogic(){
-    if(stick.getWidth()<p2.getTranslateX()-125 | stick.getWidth()+125>p2.getTranslateX()+p2.getWidth()){
+public void fallLogicFlipped(){
+    if(ichigo.getTranslateX()+26>=p2.getTranslateX()){
+        fall();
+    }
+
+}
+
+public int fallLogic(){
+    if(stick.getHeight()<p2.getTranslateX()-125 | stick.getHeight()+125>p2.getTranslateX()+p2.getWidth()){
 
         fall();
 
-
+return  0;
 
 
     }
-    else{
+    return 1;
 
-        Stick_stop=true;
-        spaceReleaseCount=true;
-        rotate_called=false;
-        HelloApplication.game.updateScore();
-        HelloApplication.game.Next_level();
-        score_update();
 
-    }
+}
+
+public void next_level(){
+
+    Stick_stop=true;
+    spaceReleaseCount=true;
+    rotate_called=false;
+    HelloApplication.game.updateScore();
+    HelloApplication.game.Next_level();
+    score_update();
 }
 
 public void score_update(){
@@ -149,6 +209,7 @@ public void flip(MouseEvent event){
                 ichigo.setScaleX(-1);
                 ichigo.setRotate(180);
                 ichigo.setTranslateY(ichigo.getTranslateY()  + ichigo.getFitHeight());
+
             } else {
                 ichigo.setScaleX(1);
                 ichigo.setRotate(0);
@@ -160,25 +221,68 @@ public void flip(MouseEvent event){
 
 }
 
+public void transitPillars(int y,int ichigo_coords){
+    ichigo.setTranslateY(-261);
+
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(0.4), p1);
+
+    p1.setTranslateX(y);
+    p2.setTranslateX(700);
+    ichigo.setTranslateX(ichigo_coords);
+    transition.setToX(0);
+
+
+
+    TranslateTransition transition2 = new TranslateTransition(Duration.seconds(0.4), p2);
+    transition2.setToX(y);
+
+
+
+    TranslateTransition ichigo_transition = new TranslateTransition(Duration.seconds(0.4), ichigo);
+    ichigo_transition.setToX(0);
+    ichigo_transition.play();
+    transition.play();
+
+    transition2.play();
+
+
+
+
+}
+
 
 @FXML
 public void initialize(){
 
+
+
+    stick.getTransforms().clear();
+
     System.out.println(p1.getTranslateX());
-    ichigo.setTranslateX(0);
-    ichigo.setTranslateY(-261);
+    System.out.println(p2.getTranslateX());
+
+
+
+
+    int p2_width=random.nextInt(300)+10;
+    int p2_translate= (int) (random.nextInt(300)+p1.getWidth()+20);
+    transitPillars(p2_translate, (int) ichigo.getTranslateX());
+
+    cherry_details=new Cherries(125, (int) (p2_translate-9));
+    cherry.setTranslateX(cherry_details.getX_coordinate());
+
 stick.setWidth(0.4);
 stick.setTranslateX(125);
 stick.setHeight(0);
 
+
 //    this.p2=new Rectangle(p1.getWidth(),263,random.nextInt((int) p1.getWidth())+(random.nextInt(300))+10,263);
-p2.setWidth(random.nextInt(300)+10);
-p2.setTranslateX(random.nextInt(300)+p1.getWidth()+20);
+p2.setWidth(p2_width);
+//p2.setTranslateX(p2_translate);
 //    p1.setX(100);
 
-    cherry_details=new Cherries(125, (int) (p2.getTranslateX())-9);
 
-cherry.setTranslateX(cherry_details.getX_coordinate());
+
 
 
 

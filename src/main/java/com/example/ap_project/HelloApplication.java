@@ -27,7 +27,10 @@ public class HelloApplication extends Application {
     public static FXMLLoader pause_loader=new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
     public static GameEngine game;
     public static   Scene Play;
-    public  static         Platform_gen controller;
+
+
+
+    public  static   Platform_gen controller;
 
     static {
         try {
