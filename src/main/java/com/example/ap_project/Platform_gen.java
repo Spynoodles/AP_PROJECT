@@ -3,11 +3,13 @@ package com.example.ap_project;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -16,6 +18,15 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 public class Platform_gen{
+@FXML
+public StackPane paneGO;
+
+@FXML
+public Button reviveButton;
+
+@FXML
+public Button MainmenuButton;
+
 
 @FXML
 public  Rectangle p1;
@@ -38,6 +49,8 @@ public Label cherries;
 @FXML
 public ImageView ichigo;
 
+private boolean cherry_collected=false;
+
 
 private boolean spaceReleaseCount=true;
 private boolean Stick_stop=true;
@@ -55,13 +68,14 @@ private static Cherries cherry_details;
 
 
     public void collectCherryLogic(){
-        if(ichigo.getTranslateX()> cherry_details.getX_coordinate()& ichigo.getTranslateX()<(cherry_details.getX_coordinate()+11)&ichigo.getRotate()==180){
+        if(!cherry_collected){
+        if(ichigo.getTranslateX()+26> cherry_details.getX_coordinate()& ichigo.getTranslateX()<(cherry_details.getX_coordinate()+11)&ichigo.getRotate()==180) {
 //            this.cherries.setText( (cherries.getText())+1);
-            HelloApplication.game.getStickHero().setCherries(HelloApplication.game.getStickHero().getCherries()+1);
+            HelloApplication.game.getStickHero().setCherries(HelloApplication.game.getStickHero().getCherries() + 1);
             cherry.setTranslateX(1000);
+cherry_collected=true;
 
-
-
+        }
         }
 if(ichigo.getRotate()==180){        fallLogicFlipped();}
 
@@ -151,10 +165,10 @@ public void rotate(){
 
 }
 
-public void fall(){
-    TranslateTransition transition = new TranslateTransition(Duration.seconds(2), ichigo);
-    ichigo.setScaleY(-1);
-    transition.setToY(40);
+public void fall(int scaleY){
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(1), ichigo);
+    ichigo.setScaleY(scaleY);
+    transition.setToY(300-ichigo.getTranslateY());
 
     transition.play();
     transition.setOnFinished(event->{HelloApplication.game.Game_over();
@@ -164,7 +178,8 @@ public void fall(){
 
 public void fallLogicFlipped(){
     if(ichigo.getTranslateX()+26>=p2.getTranslateX()){
-        fall();
+        transition_ichigo.stop();
+        fall(1);
     }
 
 }
@@ -172,7 +187,7 @@ public void fallLogicFlipped(){
 public int fallLogic(){
     if(stick.getHeight()<p2.getTranslateX()-125 | stick.getHeight()+125>p2.getTranslateX()+p2.getWidth()){
 
-        fall();
+        fall(-1);
 
 return  0;
 
@@ -184,7 +199,7 @@ return  0;
 }
 
 public void next_level(){
-
+    cherry_collected=false ;
     Stick_stop=true;
     spaceReleaseCount=true;
     rotate_called=false;
@@ -226,7 +241,7 @@ public void transitPillars(int y,int ichigo_coords){
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(0.4), p1);
 
-    p1.setTranslateX(y);
+    p1.setTranslateX(ichigo_coords);
     p2.setTranslateX(700);
     ichigo.setTranslateX(ichigo_coords);
     transition.setToX(0);
@@ -250,12 +265,38 @@ public void transitPillars(int y,int ichigo_coords){
 
 }
 
+@FXML
+public void Revive(MouseEvent event){
+if(HelloApplication.game.getStickHero().getCherries()<5){
+    Label reviveFail=new Label();
+    reviveFail.setText("Insufficient cherries");
+    reviveFail.setTranslateX(-100);
+    reviveFail.setTranslateY(-80);
+    paneGO.getChildren().add(reviveFail);
+
+}
+else {
+HelloApplication.game.getSave().setCherries (HelloApplication.game.getStickHero().getCherries()-5);
+    generate_level(HelloApplication.game.getCurrent_level(),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries());
+
+}
+
+
+
+}
+
+@FXML
+public void Mainmenu(MouseEvent event){
+
+}
+
+
 
 @FXML
 public void initialize(){
 
 
-
+    paneGO.setTranslateX(900);
     stick.getTransforms().clear();
 
     System.out.println(p1.getTranslateX());

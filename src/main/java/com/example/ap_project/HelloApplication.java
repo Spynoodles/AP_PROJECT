@@ -84,7 +84,7 @@ public class HelloApplication extends Application {
 
          primary.setTitle("Hello!");
 
-         primary.setScene(Play);
+//         primary.setScene(Play);
          primary.setScene(Main_menu);
          primary.show();
         controller=fxmlLoader.getController();
