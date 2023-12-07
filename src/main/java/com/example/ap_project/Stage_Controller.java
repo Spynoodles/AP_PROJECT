@@ -16,6 +16,7 @@ public class Stage_Controller  {
     @FXML
     public void launch_game(MouseEvent event) throws IOException, InterruptedException {
 
+
         HelloApplication.test.stop();
         HelloApplication.p.Mediaplayer();
         String flag = "ss";
