@@ -15,10 +15,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class HelloApplication extends Application {
     public static Stage primary;
@@ -50,6 +52,8 @@ public class HelloApplication extends Application {
         }
     }
 
+
+
     public static Scene Pause;
 
     static {
@@ -59,7 +63,10 @@ public class HelloApplication extends Application {
             throw new RuntimeException(e);
         }
     }
+    static Menu_music test=new Menu_music();
 
+    static characterfalls c = new characterfalls();
+    static playmusic p = new playmusic();
 
     public HelloApplication() throws IOException {
     }
@@ -74,8 +81,7 @@ public class HelloApplication extends Application {
 
 
     @Override
-    public void start(Stage stage) throws IOException {
-
+    public void start(Stage stage) throws IOException, InterruptedException {
 
 
         this.primary=stage;
@@ -86,6 +92,11 @@ public class HelloApplication extends Application {
         primary.show();
         controller=fxmlLoader.getController();
         game=new GameEngine();
+
+        test.MediaPlayer();
+
+
+
 
 
 

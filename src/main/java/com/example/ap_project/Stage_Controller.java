@@ -14,8 +14,11 @@ public class Stage_Controller  {
     public Button launch_game;
 
     @FXML
-    public void launch_game(MouseEvent event) throws IOException {
-HelloApplication.Play=new Scene(HelloApplication.fxmlLoader.load());
+    public void launch_game(MouseEvent event) throws IOException, InterruptedException {
+
+        HelloApplication.test.stop();
+        HelloApplication.p.Mediaplayer();
+        String flag = "ss";
         HelloApplication.primary.setScene(HelloApplication.Play);
       HelloApplication.controller.initialize();
       HelloApplication.controller.init_keyaction();
