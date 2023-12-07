@@ -16,7 +16,8 @@ public class Stage_Controller  {
     @FXML
     public void launch_game(MouseEvent event) throws IOException {
         HelloApplication.primary.setScene(HelloApplication.Play);
-
+        HelloApplication.controller.init_keyaction();
+        HelloApplication.controller.initialize();
     }
 
     @FXML

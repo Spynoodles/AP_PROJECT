@@ -43,6 +43,7 @@ public class GameEngine extends Menu {
 
     public void Game_over() {
 
+        HelloApplication.controller.go_PANEL();
 
     }
 

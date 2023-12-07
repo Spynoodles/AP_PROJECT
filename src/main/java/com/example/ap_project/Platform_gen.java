@@ -122,6 +122,10 @@ public void stick_grow(KeyEvent event){
 }
 @FXML
 public void init_keyaction(){
+    cherry_collected=false ;
+    Stick_stop=true;
+    spaceReleaseCount=true;
+    rotate_called=false;
 
         HelloApplication.Play.setOnKeyPressed(this::stick_grow);
         HelloApplication.Play.setOnKeyReleased(this::stickStopOnKeyRelease);
@@ -171,8 +175,8 @@ public void fall(int scaleY){
     transition.setToY(300-ichigo.getTranslateY());
 
     transition.play();
-    transition.setOnFinished(event->{HelloApplication.game.Game_over();
-    HelloApplication.primary.close();});
+    transition.setOnFinished(event->HelloApplication.game.Game_over()
+    );
 }
 
 
@@ -278,7 +282,7 @@ if(HelloApplication.game.getStickHero().getCherries()<5){
 else {
 HelloApplication.game.getSave().setCherries (HelloApplication.game.getStickHero().getCherries()-5);
     generate_level(HelloApplication.game.getCurrent_level(),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries());
-
+paneGO.setTranslateX(900);
 }
 
 
@@ -287,23 +291,28 @@ HelloApplication.game.getSave().setCherries (HelloApplication.game.getStickHero(
 
 @FXML
 public void Mainmenu(MouseEvent event){
-
+HelloApplication.game.setSave(new Save(HelloApplication.game.getStickHero().getCurrent_Level(),HelloApplication.game.getStickHero().getScore(),HelloApplication.game.getStickHero().getCherries()));
+HelloApplication.primary.setScene(HelloApplication.Main_menu);
+paneGO.setTranslateX(900);
 }
 
 
 
 @FXML
 public void initialize(){
+    ichigo.getTransforms().clear();
+    ichigo.setScaleY(1);
+
+    ichigo.setTranslateY(-254);
+    ichigo.setTranslateX(0);
 
 
     paneGO.setTranslateX(900);
     stick.getTransforms().clear();
 
-    System.out.println(p1.getTranslateX());
-    System.out.println(p2.getTranslateX());
 
 
-
+ichigo.setRotate(0);
 
     int p2_width=random.nextInt(300)+10;
     int p2_translate= (int) (random.nextInt(300)+p1.getWidth()+20);
@@ -326,6 +335,12 @@ p2.setWidth(p2_width);
 
 
 
+
+}
+
+
+public void go_PANEL(){
+    paneGO.setTranslateX(0);
 
 }
 

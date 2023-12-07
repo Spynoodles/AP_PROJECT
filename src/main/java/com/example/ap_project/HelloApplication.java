@@ -90,7 +90,7 @@ public class HelloApplication extends Application {
         controller=fxmlLoader.getController();
         game=new GameEngine();
 
-//         controller.initialize();
+         controller.initialize();
          controller.init_keyaction();
         controller.score_update();
 
