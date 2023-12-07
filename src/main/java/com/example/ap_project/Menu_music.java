@@ -8,7 +8,7 @@ public class Menu_music {
 
     MediaPlayer mediaPlayer;
     public void MediaPlayer()  {
-        String s = "C:\\Users\\vatsa\\Desktop\\IIITD\\home1.mp3";
+        String s = "src/main/resources/com/example/ap_project/home1.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
         mediaPlayer.play();

@@ -8,7 +8,7 @@ public class characterfalls {
 
     MediaPlayer mediaPlayer;
     public void Mediaplayer()  {
-        String s = "C:\\Users\\vatsa\\Desktop\\IIITD\\home3.mp3";
+        String s = "src/main/resources/com/example/ap_project/home3.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
         mediaPlayer.play();
