@@ -1,9 +1,9 @@
 package com.example.ap_project;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-
 import java.io.IOException;
 
 public class Stage_Controller  {
@@ -15,9 +15,12 @@ public class Stage_Controller  {
 
     @FXML
     public void launch_game(MouseEvent event) throws IOException {
+HelloApplication.Play=new Scene(HelloApplication.fxmlLoader.load());
         HelloApplication.primary.setScene(HelloApplication.Play);
-        HelloApplication.controller.init_keyaction();
-        HelloApplication.controller.initialize();
+      HelloApplication.controller.initialize();
+      HelloApplication.controller.init_keyaction();
+//       HelloApplication. controller.score_update();
+
     }
 
     @FXML

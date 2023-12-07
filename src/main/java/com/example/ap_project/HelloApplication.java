@@ -79,20 +79,14 @@ public class HelloApplication extends Application {
 
 
         this.primary=stage;
-
-
-
-         primary.setTitle("Hello!");
+        primary.setTitle("Hello!");
 
 //         primary.setScene(Play);
-         primary.setScene(Main_menu);
-         primary.show();
+        primary.setScene(Main_menu);
+        primary.show();
         controller=fxmlLoader.getController();
         game=new GameEngine();
 
-         controller.initialize();
-         controller.init_keyaction();
-        controller.score_update();
 
 
 

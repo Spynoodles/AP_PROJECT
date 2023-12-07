@@ -113,7 +113,6 @@ if(ichigo.getRotate()!=180& fallLogic()==1){
 public void stick_grow(KeyEvent event){
 
     if (event.getCode() == KeyCode.SPACE & Stick_stop) {
-        System.out.println("Spacebar pressed");
 
             stick.setHeight(stick.getHeight()+ 10);
 
@@ -122,19 +121,17 @@ public void stick_grow(KeyEvent event){
 }
 @FXML
 public void init_keyaction(){
-    cherry_collected=false ;
-    Stick_stop=true;
-    spaceReleaseCount=true;
-    rotate_called=false;
 
         HelloApplication.Play.setOnKeyPressed(this::stick_grow);
         HelloApplication.Play.setOnKeyReleased(this::stickStopOnKeyRelease);
         HelloApplication.Play.setOnMouseClicked(this::flip);
     }
 public void stickStopOnKeyRelease(KeyEvent event){
-        if(event.getCode()==KeyCode.SPACE & spaceReleaseCount){
-            spaceReleaseCount=false;
+    System.out.println(spaceReleaseCount);
+
+    if(event.getCode()==KeyCode.SPACE & spaceReleaseCount){
         Stick_stop=false;
+        spaceReleaseCount=false;
 
 
             rotate();}
@@ -222,7 +219,7 @@ public void score_update(){
 
 @FXML
 public void flip(MouseEvent event){
-        if(ichigo.getTranslateX()>125 ) {
+        if(ichigo.getTranslateX()>125&ichigo.getTranslateX()<p2.getTranslateX() ) {
             if (ichigo.getRotate() == 0) {
 
                 ichigo.setScaleX(-1);
@@ -300,15 +297,22 @@ paneGO.setTranslateX(900);
 
 @FXML
 public void initialize(){
-    ichigo.getTransforms().clear();
-    ichigo.setScaleY(1);
+ichigo.setScaleX(1);
+ichigo.setScaleY(1);
+    cherry_collected=false ;
+    Stick_stop=true;
+    spaceReleaseCount=true;
+    rotate_called=false;
+
+
+//    ichigo.getTransforms().clear();
 
     ichigo.setTranslateY(-254);
-    ichigo.setTranslateX(0);
 
 
     paneGO.setTranslateX(900);
     stick.getTransforms().clear();
+
 
 
 
