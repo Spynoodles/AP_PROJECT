@@ -32,6 +32,8 @@ public Button MainmenuButton;
 public  Rectangle p1;
 @FXML
 public  Rectangle p2;
+public characterfalls c = new characterfalls();
+
 @FXML
 public  Rectangle stick;
 @FXML
@@ -168,7 +170,8 @@ public void rotate(){
 
 public void fall(int scaleY){
     HelloApplication.p.stop();
-    HelloApplication.c.Mediaplayer();
+    c.Mediaplayer();
+    c.getMediaPlayer().setStopTime(Duration.seconds(7));
     TranslateTransition transition = new TranslateTransition(Duration.seconds(1), ichigo);
     ichigo.setScaleY(scaleY);
     transition.setToY(300-ichigo.getTranslateY());
@@ -293,7 +296,7 @@ public void Mainmenu(MouseEvent event){
 HelloApplication.game.setSave(new Save(HelloApplication.game.getStickHero().getCurrent_Level(),HelloApplication.game.getStickHero().getScore(),HelloApplication.game.getStickHero().getCherries()));
 HelloApplication.primary.setScene(HelloApplication.Main_menu);
 paneGO.setTranslateX(900);
-HelloApplication.c.stop();
+HelloApplication.test.MediaPlayer();
 }
 
 

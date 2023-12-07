@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class characterfalls {
 
-    MediaPlayer mediaPlayer;
+  private   MediaPlayer mediaPlayer;
     public void Mediaplayer()  {
         String s = "src/main/resources/com/example/ap_project/home3.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
@@ -14,7 +14,11 @@ public class characterfalls {
         mediaPlayer.play();
     }
 
-    public void stop() {
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+    public void stopmusic() {
         mediaPlayer.stop();
     }
 }

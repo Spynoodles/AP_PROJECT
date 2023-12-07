@@ -65,7 +65,6 @@ public class HelloApplication extends Application {
     }
     static Menu_music test=new Menu_music();
 
-    static characterfalls c = new characterfalls();
     static playmusic p = new playmusic();
 
     public HelloApplication() throws IOException {
