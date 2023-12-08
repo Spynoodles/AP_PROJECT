@@ -1,9 +1,9 @@
 package com.example.ap_project;
 
 public class Menu{
-    public int Lastscore;
-    public int Highscore;
-    public Save save;
+    private int Lastscore;
+    private int Highscore;
+    private Save save;
 
     public Menu(int lastscore, int highscore, Save save) {
         this.Lastscore = lastscore;
@@ -24,6 +24,10 @@ public class Menu{
     public int getHighscore() {
         return Highscore;
     }
+
+
+
+
 
 
 

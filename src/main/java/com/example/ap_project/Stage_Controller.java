@@ -15,31 +15,36 @@ public class Stage_Controller  {
 
     @FXML
     public void launch_game(MouseEvent event) throws IOException, InterruptedException {
-
-
+Load.setText("LOAD");
+HelloApplication.game=new GameEngine();
+HelloApplication.controller.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
+HelloApplication.controller.cherries.setText(String.valueOf(0));
+HelloApplication.controller.score.setText(String.valueOf(0));
         HelloApplication.test.stop();
         HelloApplication.p.Mediaplayer();
         String flag = "ss";
+
         HelloApplication.primary.setScene(HelloApplication.Play);
-      HelloApplication.controller.initialize();
-      HelloApplication.controller.init_keyaction();
+        HelloApplication.controller.initialize();
+        HelloApplication.controller.init_keyaction();
 //       HelloApplication. controller.score_update();
 
     }
 
     @FXML
-        public void load_game(MouseEvent event){
-        Save save=HelloApplication.game.save;
-        int score= save.score;
-        int cherries= save.cherries;
-        Level level=save.level;
-        Platform temp2=level.p2;
-        Cherries c_detail=level.cherry;
+        public void load_game(MouseEvent event) {
+        Save save = null;
+        try {
+            save = HelloApplication.game.getSave();
 
-HelloApplication.controller.generate_level(level,score,cherries);
-HelloApplication.primary.setScene(HelloApplication.Play);
+        } catch (NullPointerException e) {
+            Load.setText("NO LOAD FOUND");
+            return;
+        }
 
-
+//        HelloApplication.controller.initialize();
+        HelloApplication.controller.generate_level(save);
+        HelloApplication.primary.setScene(HelloApplication.Play);
 
 
     }

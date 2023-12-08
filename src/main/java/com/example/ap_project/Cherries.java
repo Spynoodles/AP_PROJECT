@@ -6,8 +6,20 @@ public class Cherries {
     private int x_coordinate;
 
     public  Cherries(int cord1,int cord2) {
+
+
         Random random = new Random();
-        this.x_coordinate=random.nextInt(cord2-cord1)+cord1;
+
+        int binomial = random.nextInt(2);
+        if (binomial == 1&cord2-cord1>30) {
+            System.out.println("CHERRY GENERATED");
+
+            this.x_coordinate = random.nextInt(cord2-26 - cord1) + cord1+26;
+        }
+        else{
+            System.out.println("CHerry not spawned");
+            this.x_coordinate=1000;
+        }
     }
 
     public void cherriesVanishing(int amount) {

@@ -22,8 +22,8 @@ public class GameEngine extends Menu {
 
     public GameEngine() {
         super(0, 0, new Save(new Level(), 0, 0));
-        this.stickHero = new StickHeroCharacter(0, 0, super.save.getLevel());
-        this.current_level = super.save.level;
+        this.stickHero = new StickHeroCharacter(0, 0, super.getSave().getLevel());
+        this.current_level = super.getSave().level;
 
         // Game engine initialization
     }

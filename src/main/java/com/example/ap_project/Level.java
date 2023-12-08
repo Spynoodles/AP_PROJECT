@@ -16,6 +16,13 @@ public class Level{
         this.cherry=HelloApplication.controller.getCherry_details();
         }
 
+    public Level(int p1_translate,int p1_width,int p2_translate,int p2_width,Cherries cherry) {
+//        HelloApplication.controller.initialize();
+        this.p1=new Platform(p1_translate, p1_width);
+        this.p2=new Platform( p2_translate, p2_width);
+        this.cherry=cherry;
+    }
+
 
     @Override
     public String toString() {

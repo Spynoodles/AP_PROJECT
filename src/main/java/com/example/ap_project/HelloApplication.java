@@ -91,7 +91,6 @@ public class HelloApplication extends Application {
         primary.setScene(Main_menu);
         primary.show();
         controller=fxmlLoader.getController();
-        game=new GameEngine();
 
         test.MediaPlayer();
 

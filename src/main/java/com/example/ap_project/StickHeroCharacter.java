@@ -35,13 +35,7 @@ public class StickHeroCharacter {
 
     public void fallDown() {
     }
-    public void update_LastScore(){
 
-    }
-
-    public void update_HighScore(){
-
-    }
 
     public Stick getStick() {
         return stick;
@@ -51,9 +45,7 @@ public class StickHeroCharacter {
         this.stick = stick;
     }
 
-    public void revive() {
-        // Logic for reviving the character
-    }
+
 
 
 

@@ -82,6 +82,10 @@ if(ichigo.getRotate()==180){        fallLogicFlipped();}
 
     }
   static   TranslateTransition transition_ichigo;
+
+
+
+
 public void move(){
 
 transition_ichigo= new TranslateTransition(Duration.seconds(3), ichigo);
@@ -97,7 +101,6 @@ transition_ichigo= new TranslateTransition(Duration.seconds(3), ichigo);
     timeline.play();
 
     transition_ichigo.setOnFinished((event) -> {
-
         fallLogic();
 if(ichigo.getRotate()!=180& fallLogic()==1){
     next_level();
@@ -112,7 +115,7 @@ if(ichigo.getRotate()!=180& fallLogic()==1){
 @FXML
 public void stick_grow(KeyEvent event){
 
-    if (event.getCode() == KeyCode.SPACE & Stick_stop) {
+    if (event.getCode() == KeyCode.A & Stick_stop) {
 
             stick.setHeight(stick.getHeight()+ 10);
 
@@ -121,15 +124,20 @@ public void stick_grow(KeyEvent event){
 }
 @FXML
 public void init_keyaction(){
+    System.out.println("KEY SYSTEM INITILIASED");
 
-        HelloApplication.Play.setOnKeyPressed(this::stick_grow);
+    cherry_collected=false ;
+    Stick_stop=true;
+    spaceReleaseCount=true;
+    rotate_called=false;
+
+    HelloApplication.Play.setOnKeyPressed(this::stick_grow);
         HelloApplication.Play.setOnKeyReleased(this::stickStopOnKeyRelease);
         HelloApplication.Play.setOnMouseClicked(this::flip);
     }
 public void stickStopOnKeyRelease(KeyEvent event){
-    System.out.println(spaceReleaseCount);
-
-    if(event.getCode()==KeyCode.SPACE & spaceReleaseCount){
+    System.out.println(event.getCode().toString());
+    if(event.getCode()==KeyCode.A & spaceReleaseCount){
         Stick_stop=false;
         spaceReleaseCount=false;
 
@@ -174,7 +182,11 @@ public void fall(int scaleY){
     transition.setToY(300-ichigo.getTranslateY());
 
     transition.play();
-    transition.setOnFinished(event->HelloApplication.game.Game_over()
+    transition.setOnFinished(event->{
+        HelloApplication.c.getMediaPlayer().stop();
+        HelloApplication.game.Game_over();
+
+            }
     );
 }
 
@@ -212,11 +224,17 @@ public void next_level(){
 }
 
 public void score_update(){
+
+        if(HelloApplication.game.getStickHero().getScore()+1>HelloApplication.game.getHighscore()){
+            HelloApplication.game.setHighscore(HelloApplication.game.getStickHero().getScore()+1);
+        }
+
         HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
 //    HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
     this.score.setText(String.valueOf((HelloApplication.game.getStickHero().getScore())));
     this.cherries.setText(String.valueOf(HelloApplication.game.getStickHero().getCherries()));
-}
+    this.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
+    }
 
 
 @FXML
@@ -280,7 +298,7 @@ if(HelloApplication.game.getStickHero().getCherries()<5){
 }
 else {
 HelloApplication.game.getSave().setCherries (HelloApplication.game.getStickHero().getCherries()-5);
-    generate_level(HelloApplication.game.getCurrent_level(),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries());
+    generate_level(HelloApplication.game.getSave());
 paneGO.setTranslateX(900);
 }
 
@@ -290,22 +308,21 @@ paneGO.setTranslateX(900);
 
 @FXML
 public void Mainmenu(MouseEvent event){
-HelloApplication.game.setSave(new Save(HelloApplication.game.getStickHero().getCurrent_Level(),HelloApplication.game.getStickHero().getScore(),HelloApplication.game.getStickHero().getCherries()));
+    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getStickHero().getScore(),HelloApplication.game.getStickHero().getCherries()));
+
 HelloApplication.primary.setScene(HelloApplication.Main_menu);
 paneGO.setTranslateX(900);
-HelloApplication.c.stop();
+
 }
 
 
 
 @FXML
 public void initialize(){
-ichigo.setScaleX(1);
+    paneGO.setTranslateX(900);
+
+    ichigo.setScaleX(1);
 ichigo.setScaleY(1);
-    cherry_collected=false ;
-    Stick_stop=true;
-    spaceReleaseCount=true;
-    rotate_called=false;
 
 
 //    ichigo.getTransforms().clear();
@@ -313,7 +330,6 @@ ichigo.setScaleY(1);
     ichigo.setTranslateY(-254);
 
 
-    paneGO.setTranslateX(900);
     stick.getTransforms().clear();
 
 
@@ -355,13 +371,41 @@ public void go_PANEL(){
 
 
 @FXML
-public void generate_level(Level level,int score,int cherries){
-System.out.println(level);
-        p2.setWidth(level.getP2().getWidth());
-p2.setTranslateX(level.getP2().getX_coord());
-cherry.setTranslateX(level.cherry.getX_coordinate());
-this.score.setText(String.valueOf(score));
-this.cherries.setText(String.valueOf(cherries));
+public void generate_level(Save save){
+    ichigo.setScaleX(1);
+    ichigo.setScaleY(1);
+    cherry_collected=false ;
+    Stick_stop=true;
+    stick.setWidth(0.4);
+    stick.setTranslateX(125);
+    stick.setHeight(0);
+
+    spaceReleaseCount=true;
+    rotate_called=false;
+System.out.println(save.getLevel());
+    paneGO.setTranslateX(900);
+
+    ichigo.setScaleX(1);
+    ichigo.setScaleY(1);
+
+ichigo.setTranslateX(0);
+//    ichigo.getTransforms().clear();
+
+    ichigo.setTranslateY(-254);
+
+
+    stick.getTransforms().clear();
+
+
+
+
+    ichigo.setRotate(0);
+
+        p2.setWidth(save.getLevel().getP2().getWidth());
+p2.setTranslateX(save.getLevel().getP2().getX_coord());
+cherry.setTranslateX(save.getLevel() .cherry.getX_coordinate());
+this.score.setText(String.valueOf(save.getScore()));
+this.cherries.setText(String.valueOf(save.getCherries()));
     }
 
 
