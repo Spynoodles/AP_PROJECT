@@ -179,14 +179,15 @@ public void rotate(){
 public void fall(int scaleY){
     HelloApplication.p.stop();
     c.Mediaplayer();
-    c.getMediaPlayer().setStopTime(Duration.seconds(7));
+    c.getMediaPlayer().setStopTime(Duration.seconds(4));
+
     TranslateTransition transition = new TranslateTransition(Duration.seconds(1), ichigo);
     ichigo.setScaleY(scaleY);
     transition.setToY(300-ichigo.getTranslateY());
 
     transition.play();
     transition.setOnFinished(event->{
-        HelloApplication.c.getMediaPlayer().stop();
+//        HelloApplication.c.getMediaPlayer().stop();
         HelloApplication.game.Game_over();
 
             }

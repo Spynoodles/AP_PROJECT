@@ -77,6 +77,9 @@ public class HelloApplication extends Application {
 
 
 
+    static threadstart t1 = new threadstart();
+    static ping t2 = new ping();
+
 
 
     @Override
@@ -90,7 +93,11 @@ public class HelloApplication extends Application {
         primary.setScene(Main_menu);
         primary.show();
         controller=fxmlLoader.getController();
-
+        t1.start();
+        t1.join();
+        t2.start();
+        t2.join();
+        
         test.MediaPlayer();
 
 
