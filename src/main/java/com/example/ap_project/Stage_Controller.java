@@ -16,7 +16,6 @@ public class Stage_Controller  {
     @FXML
     public void launch_game(MouseEvent event) throws IOException, InterruptedException {
 Load.setText("LOAD");
-HelloApplication.game=new GameEngine();
 HelloApplication.controller.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
 HelloApplication.controller.cherries.setText(String.valueOf(0));
 HelloApplication.controller.score.setText(String.valueOf(0));

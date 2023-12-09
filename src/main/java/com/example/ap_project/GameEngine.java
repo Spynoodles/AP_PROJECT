@@ -3,6 +3,17 @@ package com.example.ap_project;
 public class GameEngine extends Menu {
     private StickHeroCharacter stickHero;
     private Level current_level;
+    private int Highscore;
+
+    @Override
+    public int getHighscore() {
+        return Highscore;
+    }
+
+    @Override
+    public void setHighscore(int highscore) {
+        Highscore = highscore;
+    }
 
     public StickHeroCharacter getStickHero() {
         return stickHero;

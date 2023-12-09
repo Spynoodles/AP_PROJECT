@@ -1,9 +1,12 @@
 package com.example.ap_project;
 
-public class Save {
+import java.io.Serializable;
+
+public class Save implements Serializable {
     Level level;
     int score;
     int cherries;
+    int Highscore;
 
     public Save(Level level, int score, int cherries) {
         this.level = level;

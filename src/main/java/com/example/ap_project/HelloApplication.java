@@ -101,6 +101,7 @@ public class HelloApplication extends Application {
         test.MediaPlayer();
 
 
+        HelloApplication.game=new GameEngine();
 
 
 

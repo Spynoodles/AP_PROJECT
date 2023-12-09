@@ -73,7 +73,7 @@ private static Cherries cherry_details;
         if(!cherry_collected){
         if(ichigo.getTranslateX()+26> cherry_details.getX_coordinate()& ichigo.getTranslateX()<(cherry_details.getX_coordinate()+11)&ichigo.getRotate()==180) {
 //            this.cherries.setText( (cherries.getText())+1);
-            HelloApplication.game.getStickHero().setCherries(HelloApplication.game.getStickHero().getCherries() + 1);
+            HelloApplication.game.getSave().setCherries(HelloApplication.game.getSave().getCherries() + 1);
             cherry.setTranslateX(1000);
 cherry_collected=true;
 
@@ -229,14 +229,15 @@ public void next_level(){
 
 public void score_update(){
 
-        if(HelloApplication.game.getStickHero().getScore()+1>HelloApplication.game.getHighscore()){
-            HelloApplication.game.setHighscore(HelloApplication.game.getStickHero().getScore()+1);
+        if(HelloApplication.game.getSave().getScore()+1>HelloApplication.game.getHighscore()){
+            HelloApplication.game.setHighscore(HelloApplication.game.getSave().getScore()+1);
+
         }
 
-        HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
-//    HelloApplication.game.getStickHero().setScore(HelloApplication.game.getStickHero().getScore()+1);
-    this.score.setText(String.valueOf((HelloApplication.game.getStickHero().getScore())));
-    this.cherries.setText(String.valueOf(HelloApplication.game.getStickHero().getCherries()));
+        HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+1);
+//    HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+1);
+    this.score.setText(String.valueOf((HelloApplication.game.getSave().getScore())));
+    this.cherries.setText(String.valueOf(HelloApplication.game.getSave().getCherries()));
     this.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
     }
 
@@ -292,7 +293,7 @@ public void transitPillars(int y,int ichigo_coords){
 
 @FXML
 public void Revive(MouseEvent event){
-if(HelloApplication.game.getStickHero().getCherries()<5){
+if(HelloApplication.game.getSave().getCherries()<5){
     Label reviveFail=new Label();
     reviveFail.setText("Insufficient cherries");
     reviveFail.setTranslateX(-100);
@@ -301,7 +302,8 @@ if(HelloApplication.game.getStickHero().getCherries()<5){
 
 }
 else {
-HelloApplication.game.getSave().setCherries (HelloApplication.game.getStickHero().getCherries()-5);
+    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
+HelloApplication.game.getSave().setCherries (HelloApplication.game.getSave().getCherries()-5);
     generate_level(HelloApplication.game.getSave());
 paneGO.setTranslateX(900);
 }
@@ -312,7 +314,7 @@ paneGO.setTranslateX(900);
 
 @FXML
 public void Mainmenu(MouseEvent event){
-    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getStickHero().getScore(),HelloApplication.game.getStickHero().getCherries()));
+    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
 
 HelloApplication.primary.setScene(HelloApplication.Main_menu);
 paneGO.setTranslateX(900);
@@ -332,7 +334,7 @@ ichigo.setScaleY(1);
 
 //    ichigo.getTransforms().clear();
 
-    ichigo.setTranslateY(-254);
+    ichigo.setTranslateY(-261);
 
 
     stick.getTransforms().clear();
@@ -396,7 +398,7 @@ System.out.println(save.getLevel());
 ichigo.setTranslateX(0);
 //    ichigo.getTransforms().clear();
 
-    ichigo.setTranslateY(-254);
+    ichigo.setTranslateY(-261);
 
 
     stick.getTransforms().clear();
