@@ -129,8 +129,6 @@ public void saveFile() throws IOException {
 }
 
 ///CHEAT CODE
-//        private static final String TARGET_STRING = "CHERRY";
-//        private static final int TARGET_LENGTH = TARGET_STRING.length();
         private static Stack<String> stack = new Stack<>();
         private static Map<Character, String> flyweightMap = new HashMap<>();
 
@@ -161,9 +159,39 @@ public void saveFile() throws IOException {
         }
 
 
+        private static Stack<String> stack2 = new Stack<>();
+        private static Map<Character, String> flyweightMap2 = new HashMap<>();
+
+        public static boolean detectScore(String inputChar,String spell) {
+            String flyweightChar = getFlyweight2(inputChar.charAt(0));
+
+            stack2.push(flyweightChar);
+
+            if (stack2.size() >= spell.length()) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < spell.length(); i++) {
+                    sb.append(stack2.get(stack2.size() - spell.length() + i));
+                }
+                String lastSixChars = sb.toString();
+
+                return lastSixChars.equals(spell);
+            }
+
+            return false;
+        }
+
+        private static String getFlyweight2(char c) {
+            if (!flyweightMap.containsKey(c)) {
+                flyweightMap.put(c, String.valueOf(c));
+            }
+            return flyweightMap.get(c);
+        }
 
 
-    @FXML
+
+
+
+        @FXML
 public void stick_grow(KeyEvent event)   {
 
     if(event.getCode()==KeyCode.C){
@@ -174,23 +202,24 @@ public void stick_grow(KeyEvent event)   {
         CheatStart_score=true;
     }
 
-    if(CheatStart_score){
-        if(detectCherry(event.getCode().toString(),"CHERRY")){
-            System.out.println("CHEAT DETECTED");
-            HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+10);
-            score.setText(String.valueOf( HelloApplication.game.getSave().getScore()));
-            if(HelloApplication.game.getHighscore()<HelloApplication.game.getSave().getScore()){
-                HelloApplication.game.setHighscore(HelloApplication.game.getSave().getScore());
-            }
-        }
-    }
 
-    if(CheatStart_cherry){
+            if(detectScore(event.getCode().toString(),"SCORE")){
+                System.out.println("CHEAT DETECTED");
+                HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+10);
+                score.setText(String.valueOf( HelloApplication.game.getSave().getScore()));
+                if(HelloApplication.game.getHighscore()<HelloApplication.game.getSave().getScore()){
+                    HelloApplication.game.setHighscore(HelloApplication.game.getSave().getScore());
+                    high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
+                }
+
+            }
+
+
         if(detectCherry(event.getCode().toString(),"CHERRY")){
             System.out.println("CHEAT DETECTED");
             HelloApplication.game.getSave().setCherries(HelloApplication.game.getSave().getCherries()+10);
             cherries.setText(String.valueOf( HelloApplication.game.getSave().getCherries()));
-        }
+
     }
 
 
