@@ -24,9 +24,9 @@ import javafx.scene.media.MediaPlayer;
 
 public class HelloApplication extends Application {
     public static Stage primary;
-    public static FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play.fxml"));
-    public static FXMLLoader main_menuLoader=new FXMLLoader(HelloApplication.class.getResource("Main_menu.fxml"));
-    public static FXMLLoader pause_loader=new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
+    public static FXMLLoader fxmlLoader ;
+    public static FXMLLoader main_menuLoader;
+    public static FXMLLoader pause_loader;
     public static GameEngine game;
     public static   Scene Play;
 
@@ -34,35 +34,18 @@ public class HelloApplication extends Application {
 
     public  static   Platform_gen controller;
 
-    static {
-        try {
-            Play = new Scene(fxmlLoader.load(),800,600);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
+
 
     public static Scene Main_menu;
 
-    static {
-        try {
-            Main_menu = new Scene(main_menuLoader.load(),800,600);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
 
 
     public static Scene Pause;
 
-    static {
-        try {
-            Pause = new Scene(pause_loader.load(),800,600);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
     static Menu_music test=new Menu_music();
 
     static playmusic p = new playmusic();
@@ -83,8 +66,14 @@ public class HelloApplication extends Application {
 
 
     @Override
-    public void start(Stage stage) throws IOException, InterruptedException {
+    public  void start(Stage stage) throws IOException, InterruptedException {
 
+
+        fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play.fxml"));
+        main_menuLoader=new FXMLLoader(HelloApplication.class.getResource("Main_menu.fxml"));
+        pause_loader=new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
+        Play = new Scene(fxmlLoader.load(),800,600);
+        Main_menu = new Scene(main_menuLoader.load(),800,600);
 
         this.primary=stage;
         primary.setTitle("Hello!");
