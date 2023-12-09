@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
@@ -188,7 +189,11 @@ public void fall(int scaleY){
     transition.play();
     transition.setOnFinished(event->{
 //        HelloApplication.c.getMediaPlayer().stop();
-        HelloApplication.game.Game_over();
+                try {
+                    HelloApplication.game.Game_over();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
             }
     );

@@ -1,5 +1,10 @@
 package com.example.ap_project;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class GameEngine extends Menu {
     private StickHeroCharacter stickHero;
     private Level current_level;
@@ -52,8 +57,10 @@ public class GameEngine extends Menu {
         current_level = new Level();
     }
 
-    public void Game_over() {
-
+    public void Game_over() throws IOException {
+        ObjectOutputStream output=new ObjectOutputStream(new FileOutputStream("Save"));
+        output.writeObject(HelloApplication.game.getSave());
+        output.close();
         HelloApplication.controller.go_PANEL();
 
     }

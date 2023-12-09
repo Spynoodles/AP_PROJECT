@@ -14,7 +14,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
@@ -66,7 +68,7 @@ public class HelloApplication extends Application {
 
 
     @Override
-    public  void start(Stage stage) throws IOException, InterruptedException {
+    public  void start(Stage stage) throws IOException, InterruptedException, ClassNotFoundException {
 
 
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play.fxml"));
@@ -74,6 +76,8 @@ public class HelloApplication extends Application {
         pause_loader=new FXMLLoader(HelloApplication.class.getResource("Pause.fxml"));
         Play = new Scene(fxmlLoader.load(),800,600);
         Main_menu = new Scene(main_menuLoader.load(),800,600);
+
+
 
         this.primary=stage;
         primary.setTitle("Hello!");
@@ -91,9 +95,20 @@ public class HelloApplication extends Application {
 
 
         HelloApplication.game=new GameEngine();
+//
 
 
+        try {
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("Save"));
+            game.setSave((Save) input.readObject());
+        } catch (Exception e){
+            ObjectInputStream input=new ObjectInputStream(new FileInputStream("Save"));
+            game.setSave((Save) input.readObject());
+        }
 
+
+        Stage_Controller MenuController=main_menuLoader.getController();
+        MenuController.highscore.setText(String.valueOf( HelloApplication.game.getHighscore()));
 
 
 

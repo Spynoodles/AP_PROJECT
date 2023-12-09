@@ -1,6 +1,8 @@
 package com.example.ap_project;
 
-public class Platform {
+import java.io.Serializable;
+
+public class Platform  implements Serializable {
     private int x_coord;
     private int width;
 

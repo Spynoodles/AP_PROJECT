@@ -24,13 +24,9 @@
                </font>
             </Text>
             <Button fx:id="launch_game" mnemonicParsing="false" onMouseClicked="#launch_game" text="PLAY" />
-            <Text blendMode="RED" fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="High Score:" translateX="-180.0" translateY="-165.0" />
-            <Label text="Label" translateX="-125.0" translateY="-165.0" />
-            <Label text="Label" translateX="-130.0" translateY="-180.0" />
+            <Text blendMode="RED" fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest  Score:" translateX="-210.0" translateY="-165.0" />
+            <Label fx:id="highscore" text="Label" translateX="-125.0" translateY="-165.0" />
             <Button fx:id="Load" mnemonicParsing="false" onMouseClicked="#load_game" text="LOAD" translateY="40.0" />
-            <Text blendMode="COLOR_DODGE" fill="#f80000" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Cherries:" translateX="-190.0" translateY="-180.0" />
-            <Text blendMode="RED" fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Score:" translateX="-180.0" translateY="-150.0" />
-            <Label text="Label" translateX="-125.0" translateY="-150.0" />
          </children>
       </StackPane>
    </children>

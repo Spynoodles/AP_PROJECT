@@ -3,10 +3,15 @@ package com.example.ap_project;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class Stage_Controller  {
+
+    @FXML
+    public  Label highscore;
+
 
     @FXML
     public Button Load;
@@ -16,6 +21,7 @@ public class Stage_Controller  {
     @FXML
     public void launch_game(MouseEvent event) throws IOException, InterruptedException {
 Load.setText("LOAD");
+HelloApplication.game.setSave(new Save(new Level(),0,0));
 HelloApplication.controller.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
 HelloApplication.controller.cherries.setText(String.valueOf(0));
 HelloApplication.controller.score.setText(String.valueOf(0));

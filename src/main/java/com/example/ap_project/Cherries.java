@@ -1,8 +1,9 @@
 package com.example.ap_project;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Cherries {
+public class Cherries implements Serializable {
     private int x_coordinate;
 
     public  Cherries(int cord1,int cord2) {

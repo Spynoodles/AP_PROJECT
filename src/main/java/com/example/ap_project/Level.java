@@ -2,7 +2,9 @@ package com.example.ap_project;
 
 import javafx.scene.input.MouseButton;
 
-public class Level{
+import java.io.Serializable;
+
+public class Level implements Serializable {
 
     Platform p1;
     Platform p2;
