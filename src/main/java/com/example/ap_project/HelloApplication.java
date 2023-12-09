@@ -23,6 +23,9 @@ import java.util.Random;
 import java.util.Stack;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 public class HelloApplication extends Application {
     public static Stage primary;
@@ -113,9 +116,6 @@ public class HelloApplication extends Application {
 
 
 
-
-
-
     }
 
 
@@ -123,6 +123,7 @@ public class HelloApplication extends Application {
 
 
         launch();
+
 
     }
 }
