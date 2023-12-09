@@ -38,6 +38,10 @@ HelloApplication.controller.score.setText(String.valueOf(0));
 
     @FXML
         public void load_game(MouseEvent event) {
+        HelloApplication.test.stop();
+        HelloApplication.p.Mediaplayer();
+        String flag = "ss";
+
         Save save = null;
         try {
             save = HelloApplication.game.getSave();
@@ -46,6 +50,7 @@ HelloApplication.controller.score.setText(String.valueOf(0));
             Load.setText("NO LOAD FOUND");
             return;
         }
+        HelloApplication.controller.init_keyaction();
 
 //        HelloApplication.controller.initialize();
         HelloApplication.controller.generate_level(save);

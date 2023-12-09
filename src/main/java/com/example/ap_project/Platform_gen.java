@@ -2,7 +2,6 @@
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
-import javafx.geometry.Point3D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -14,17 +13,22 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.CountDownLatch;
+import java.util.Stack;
 
-public class Platform_gen{
+    public class Platform_gen{
 @FXML
 public StackPane paneGO;
+private  boolean CheatStart_cherry;
+    private  boolean CheatStart_score;
 
+private String cheat_cherry="cherry";
+private String cheat_score="Score";
 @FXML
 public Button reviveButton;
 
@@ -124,10 +128,73 @@ public void saveFile() throws IOException {
     output.close();
 }
 
+///CHEAT CODE
+//        private static final String TARGET_STRING = "CHERRY";
+//        private static final int TARGET_LENGTH = TARGET_STRING.length();
+        private static Stack<String> stack = new Stack<>();
+        private static Map<Character, String> flyweightMap = new HashMap<>();
+
+        public static boolean detectCherry(String inputChar,String spell) {
+            String flyweightChar = getFlyweight(inputChar.charAt(0));
+
+            stack.push(flyweightChar);
+
+//            System.out.println(stack.toString());
+            if (stack.size() >= spell.length()) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < spell.length(); i++) {
+                    sb.append(stack.get(stack.size() - spell.length() + i));
+                }
+                String lastSixChars = sb.toString();
+
+                return lastSixChars.equals(spell);
+            }
+
+            return false;
+        }
+
+        private static String getFlyweight(char c) {
+            if (!flyweightMap.containsKey(c)) {
+                flyweightMap.put(c, String.valueOf(c));
+            }
+            return flyweightMap.get(c);
+        }
 
 
-@FXML
+
+
+    @FXML
 public void stick_grow(KeyEvent event)   {
+
+    if(event.getCode()==KeyCode.C){
+        CheatStart_cherry=true;
+
+    }
+    if(event.getCode()==KeyCode.S){
+        CheatStart_score=true;
+    }
+
+    if(CheatStart_score){
+        if(detectCherry(event.getCode().toString(),"CHERRY")){
+            System.out.println("CHEAT DETECTED");
+            HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+10);
+            score.setText(String.valueOf( HelloApplication.game.getSave().getScore()));
+            if(HelloApplication.game.getHighscore()<HelloApplication.game.getSave().getScore()){
+                HelloApplication.game.setHighscore(HelloApplication.game.getSave().getScore());
+            }
+        }
+    }
+
+    if(CheatStart_cherry){
+        if(detectCherry(event.getCode().toString(),"CHERRY")){
+            System.out.println("CHEAT DETECTED");
+            HelloApplication.game.getSave().setCherries(HelloApplication.game.getSave().getCherries()+10);
+            cherries.setText(String.valueOf( HelloApplication.game.getSave().getCherries()));
+        }
+    }
+
+
+//    System.out.println(event.getCode());
     if(event.getCode()==KeyCode.CAPS){
         System.out.println("Game saved");
         HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
@@ -149,7 +216,6 @@ public void stick_grow(KeyEvent event)   {
 }
 @FXML
 public void init_keyaction(){
-    System.out.println("KEY SYSTEM INITILIASED");
 
     cherry_collected=false ;
     Stick_stop=true;
@@ -250,6 +316,8 @@ return  0;
 }
 
 public void next_level(){
+    CheatStart_score=false;
+
     cherry_collected=false ;
     Stick_stop=true;
     spaceReleaseCount=true;
@@ -357,6 +425,9 @@ HelloApplication.test.Mediaplayer();
 
 @FXML
 public void initialize(){
+    CheatStart_cherry=false;
+    CheatStart_score=false;
+
     paneGO.setTranslateX(900);
 
     ichigo.setScaleX(1);
@@ -410,6 +481,9 @@ public void go_PANEL(){
 
 @FXML
 public void generate_level(Save save){
+    CheatStart_score=false;
+
+    CheatStart_cherry=false;
     ichigo.setScaleX(1);
     ichigo.setScaleY(1);
     cherry_collected=false ;
