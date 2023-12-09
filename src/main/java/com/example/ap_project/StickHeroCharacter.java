@@ -4,7 +4,6 @@ public class StickHeroCharacter {
     private int score;
     private int cherries;
     private Level Current_Level;
-    private boolean flipped_down;
     private Stick stick;
 
 
@@ -13,28 +12,8 @@ public class StickHeroCharacter {
         this.score=score;
         this.cherries=cherries;
         this.Current_Level=level;
-        this.flipped_down=false;
     }
 
-    public void create_stick(){
-
-    };
-
-    public void collect_cherry(Cherries cherry){
-
-    }
-
-
-    public void move() {
-        // Logic for character movement
-    }
-
-    public void flip() {
-        // Logic for flipping upside down to collect rewards
-    }
-
-    public void fallDown() {
-    }
 
 
     public Stick getStick() {

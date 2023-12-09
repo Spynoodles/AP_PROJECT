@@ -231,7 +231,7 @@ public void score_update(){
 
         if(HelloApplication.game.getSave().getScore()+1>HelloApplication.game.getHighscore()){
             HelloApplication.game.setHighscore(HelloApplication.game.getSave().getScore()+1);
-
+            HelloApplication.game.getSave().setHighscore(HelloApplication.game.getHighscore());
         }
 
         HelloApplication.game.getSave().setScore(HelloApplication.game.getSave().getScore()+1);

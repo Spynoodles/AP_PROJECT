@@ -8,6 +8,14 @@ public class Save implements Serializable {
     int cherries;
     int Highscore;
 
+    public int getHighscore() {
+        return Highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        Highscore = highscore;
+    }
+
     public Save(Level level, int score, int cherries) {
         this.level = level;
         this.score = score;
