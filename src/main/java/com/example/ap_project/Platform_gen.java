@@ -14,7 +14,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
@@ -88,7 +91,7 @@ if(ichigo.getRotate()==180){        fallLogicFlipped();}
 
 
 
-
+    Timeline timeline;
 public void move(){
 
 transition_ichigo= new TranslateTransition(Duration.seconds(3), ichigo);
@@ -96,7 +99,7 @@ transition_ichigo= new TranslateTransition(Duration.seconds(3), ichigo);
     transition_ichigo.setToX(stick.getHeight()+p1.getWidth()-ichigo.getFitWidth());
 
         transition_ichigo.play();
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+     timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
        collectCherryLogic();
 
     }));
@@ -115,8 +118,27 @@ if(ichigo.getRotate()!=180& fallLogic()==1){
 
 }
 
+public void saveFile() throws IOException {
+    ObjectOutputStream output=new ObjectOutputStream(new FileOutputStream("Save"));
+    output.writeObject(HelloApplication.game.getSave());
+    output.close();
+}
+
+
+
 @FXML
-public void stick_grow(KeyEvent event){
+public void stick_grow(KeyEvent event)   {
+    if(event.getCode()==KeyCode.CAPS){
+        System.out.println("Game saved");
+        HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
+                HelloApplication.game.getSave().setHighscore(HelloApplication.game.getHighscore());
+        try {
+            saveFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     if (event.getCode() == KeyCode.A & Stick_stop) {
 
@@ -178,6 +200,8 @@ public void rotate(){
 }
 
 public void fall(int scaleY){
+    timeline.stop();
+    System.out.println("FALL USED");
     HelloApplication.p.stop();
     c.Mediaplayer();
     c.getMediaPlayer().setStopTime(Duration.seconds(4));
@@ -190,9 +214,7 @@ public void fall(int scaleY){
     transition.setOnFinished(event->{
 //        HelloApplication.c.getMediaPlayer().stop();
                 try {
-                    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
-
-                    HelloApplication.game.Game_over();
+                          HelloApplication.game.Game_over();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -204,7 +226,10 @@ public void fall(int scaleY){
 
 public void fallLogicFlipped(){
     if(ichigo.getTranslateX()+26>=p2.getTranslateX()){
+//        timeline.stop();
+
         transition_ichigo.stop();
+
         fall(1);
     }
 
@@ -321,7 +346,6 @@ paneGO.setTranslateX(900);
 
 @FXML
 public void Mainmenu(MouseEvent event){
-    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
 
 HelloApplication.primary.setScene(HelloApplication.Main_menu);
 paneGO.setTranslateX(900);
@@ -414,7 +438,7 @@ ichigo.setTranslateX(0);
 
 
     ichigo.setRotate(0);
-
+this.high_score.setText(String.valueOf(HelloApplication.game.getHighscore()));
         p2.setWidth(save.getLevel().getP2().getWidth());
 p2.setTranslateX(save.getLevel().getP2().getX_coord());
 cherry.setTranslateX(save.getLevel().cherry.getX_coordinate());

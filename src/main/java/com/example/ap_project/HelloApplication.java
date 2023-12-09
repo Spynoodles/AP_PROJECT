@@ -103,12 +103,14 @@ public class HelloApplication extends Application {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("Save"));
             game.setSave((Save) input.readObject());
             game.setHighscore(game.getSave().Highscore);
+            System.out.println(game.getSave().Highscore);
+            MenuController.highscore.setText(String.valueOf( HelloApplication.game.getHighscore()));
+
         } catch (Exception e){
             MenuController.Load.setText("LOAD NOT FOUND");
         }
 
 
-        MenuController.highscore.setText(String.valueOf( HelloApplication.game.getHighscore()));
 
 
 
