@@ -319,7 +319,7 @@ public void Mainmenu(MouseEvent event){
 HelloApplication.primary.setScene(HelloApplication.Main_menu);
 paneGO.setTranslateX(900);
 
-HelloApplication.test.MediaPlayer();
+HelloApplication.test.Mediaplayer();
 }
 
 
