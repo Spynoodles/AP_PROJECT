@@ -1,4 +1,4 @@
-package com.example.ap_project;
+    package com.example.ap_project;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
