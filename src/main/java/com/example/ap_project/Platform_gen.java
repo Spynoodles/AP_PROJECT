@@ -190,6 +190,8 @@ public void fall(int scaleY){
     transition.setOnFinished(event->{
 //        HelloApplication.c.getMediaPlayer().stop();
                 try {
+                    HelloApplication.game.setSave(new Save( new Level((int) p1.getTranslateX(), (int) p1.getWidth(), (int) p2.getTranslateX(), (int) p2.getWidth(),getCherry_details()),HelloApplication.game.getSave().getScore(),HelloApplication.game.getSave().getCherries()));
+
                     HelloApplication.game.Game_over();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -415,7 +417,7 @@ ichigo.setTranslateX(0);
 
         p2.setWidth(save.getLevel().getP2().getWidth());
 p2.setTranslateX(save.getLevel().getP2().getX_coord());
-cherry.setTranslateX(save.getLevel() .cherry.getX_coordinate());
+cherry.setTranslateX(save.getLevel().cherry.getX_coordinate());
 this.score.setText(String.valueOf(save.getScore()));
 this.cherries.setText(String.valueOf(save.getCherries()));
     }

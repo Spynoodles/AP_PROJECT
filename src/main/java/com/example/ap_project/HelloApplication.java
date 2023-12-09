@@ -97,17 +97,17 @@ public class HelloApplication extends Application {
         HelloApplication.game=new GameEngine();
 //
 
+        Stage_Controller MenuController=main_menuLoader.getController();
 
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("Save"));
             game.setSave((Save) input.readObject());
+            game.setHighscore(game.getSave().Highscore);
         } catch (Exception e){
-            ObjectInputStream input=new ObjectInputStream(new FileInputStream("Save"));
-            game.setSave((Save) input.readObject());
+            MenuController.Load.setText("LOAD NOT FOUND");
         }
 
 
-        Stage_Controller MenuController=main_menuLoader.getController();
         MenuController.highscore.setText(String.valueOf( HelloApplication.game.getHighscore()));
 
 
