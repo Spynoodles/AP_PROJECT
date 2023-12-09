@@ -48,7 +48,7 @@ public class HelloApplication extends Application {
     public static Scene Pause;
 
 
-    static Menu_music test=new Menu_music();
+    static Menu_music test = new Menu_music();
 
     static playmusic p = new playmusic();
 
@@ -91,7 +91,7 @@ public class HelloApplication extends Application {
         t2.start();
         t2.join();
         
-        test.MediaPlayer();
+        test.Mediaplayer();
 
 
         HelloApplication.game=new GameEngine();
